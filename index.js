@@ -38,7 +38,7 @@ const notifyDatabaseKickoff = async() => {
 
     const mailOption = {
       from: 'Support Center',
-      to: `collinsrollins07@gmail.com`,
+      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
       subject: 'Wifispace Bot Notification Kickoff',
       text: `Hello, we are notifyinmg you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`
     }
@@ -58,7 +58,7 @@ const connection = mongoose.connection;
 try {
   connection.once("open", () => {
     console.log("MongoDB database connection established successfully.");
-    // notifyDatabaseKickoff();
+    notifyDatabaseKickoff();
   });
 } catch (error) {
   console.log("Something went wrong with database connection");
@@ -163,7 +163,7 @@ const runSchedule = async(assignDate = "empty") => {
 
 setInterval(() => {
   runSchedule()
-},30000 );
+},720000 );
 
 app.get("/", async(req, res) => {
 
