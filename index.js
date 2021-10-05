@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
 require('dotenv').config();
+const cors = require('cors');
+app.use(cors());
 
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
