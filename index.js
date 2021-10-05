@@ -10,8 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const signup = require("./routes/signup");
+const getUsers = require("./routes/getUsers");
 const Customer = require("./models/Customer");
 app.use("/signup", signup);
+app.use("/getUsers", getUsers);
 
 
 const Port = 3000;
