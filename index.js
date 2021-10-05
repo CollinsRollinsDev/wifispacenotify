@@ -48,7 +48,10 @@ const notifyDatabaseKickoff = async() => {
         console.log(error)
       } else{
         console.log(`Emaiil sent: ${info.response}`)
-    
+        res.json({
+          success: true,
+          message: "All fine and good",
+        })
       }
     })
 
@@ -154,6 +157,7 @@ const runSchedule = async(assignDate = "empty") => {
         console.log(error)
       } else{
         console.log(`Emaiil sent: ${info.response} to ${selectEmails}`)
+        
       }
     })
   }
@@ -167,10 +171,10 @@ setInterval(() => {
 
 app.get("/", async(req, res) => {
 
-  res.json({
-    success: true,
-    message: "All fine and good",
-  })
+  // res.json({
+  //   success: true,
+  //   message: "All fine and good",
+  // })
 })
 
 
