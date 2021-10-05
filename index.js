@@ -128,7 +128,7 @@ const runSchedule = async(assignDate = "empty") => {
   if(selectEmails.lenght != 0){
     const mailOption = {
       from: 'Support Center',
-      to: `collinsrollins07@gmail.com`,
+      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
       subject: 'Daily Dued Notification For Wifispace Users.',
       text: `Hi Team, we have just sent notification across to the following user(s) ${selectEmails}. If any of them is not suppose to recieve these email, please Click "https://smarttechs.com.ng" to marked them as paid.`
     }
@@ -144,7 +144,7 @@ const runSchedule = async(assignDate = "empty") => {
   } else{
     const mailOption = {
       from: 'Support Center',
-      to: `collinsrollins07@gmail.com`,
+      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
       subject: 'Daily Dued Notification For Wifispace Users.',
       text: `Hi Team, we have scenned the database for dued customers for today and we've found none. We shall run next scan tommorow...`
     }
