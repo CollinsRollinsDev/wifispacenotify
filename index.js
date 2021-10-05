@@ -175,7 +175,7 @@ app.get("/", async(req, res) => {
 })
 
 
-app.listen(process.env.Port 
+app.listen(process.env.PORT 
   || Port, () => {
   console.log(`Server is started on Port: ${Port}`)
 })
