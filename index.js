@@ -168,10 +168,10 @@ setInterval(() => {
 
 app.get("/", async(req, res) => {
 
-  // res.json({
-  //   success: true,
-  //   message: "All fine and good",
-  // })
+  res.json({
+    success: true,
+    message: "All fine and good",
+  })
 })
 
 
