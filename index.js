@@ -48,10 +48,7 @@ const notifyDatabaseKickoff = async() => {
         console.log(error)
       } else{
         console.log(`Emaiil sent: ${info.response}`)
-        res.json({
-          success: true,
-          message: "All fine and good",
-        })
+        
       }
     })
 
