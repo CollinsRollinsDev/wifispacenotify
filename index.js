@@ -166,7 +166,7 @@ const runSchedule = async(assignDate = "empty") => {
 
 setInterval(() => {
   runSchedule()
-},600000 );
+},43200000 );
 
 app.get("/", async(req, res) => {
 
