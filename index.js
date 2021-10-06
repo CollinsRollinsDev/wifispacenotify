@@ -17,8 +17,6 @@ app.use("/getUsers", getUsers);
 
 
 const Port = 3000;
-let timer;
-let play;
 let date = new Date().getTime();
 
 
@@ -168,7 +166,7 @@ const runSchedule = async(assignDate = "empty") => {
 
 setInterval(() => {
   runSchedule()
-},43200000 );
+},120000 );
 
 app.get("/", async(req, res) => {
 
