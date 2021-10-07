@@ -30,29 +30,29 @@ mongoose.connect(uri, {
 });
 
 const notifyDatabaseKickoff = async() => {
-  const transorter = nodemailer.createTransport({
-    service: 'gmail',
+  const smtpTransport = nodemailer.createTransport({
+    host: 'smtp-relay.sendinblue.com',
+    port: 587,
     auth: {
-      user: "wifispacenetworks@gmail.com",
-      pass: authenticate
+      user:process.env.SMTP_USER,
+      pass: process.env.SMTP_SECRET
     }
   })
 
-    const mailOption = {
-      from: 'Support Center',
-      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
+    const sendingMail = smtpTransport.sendMail({
+      from: 'wifispacenetworks@gmail.com',
+      to: "collinsrollins07@gmail.com, wifispacenetworks@gmail.com",
       subject: 'Wifispace Bot Notification Kickoff',
-      text: `Hello, we are notifyinmg you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`
-    }
-
-    transorter.sendMail(mailOption, async(error, info) => {
-      if(error){
-        console.log(error)
-      } else{
-        console.log(`Emaiil sent: ${info.response}`)
-        
-      }
+      // text: `Hello, we are notifying you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`,
+      html:` <body><h2>Hello Team,</h2><p>we are notifying you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you. You can click <a href="http://wifispacenotifier.herokuapp.com">here</a> to visit the endpoint</p>  <center><div><img src="https://smarttechs.com.ng/WSLogo.jpg?auto=format&fit=max&w=300 style="height:50px;width:50px;"" alt="WIfispace"></div></center></body>`
     })
+
+  if(sendingMail){
+    console.log(sendingMail);
+    // res.status(200).json({
+
+    // })
+  }
 
 }
 
@@ -89,28 +89,29 @@ const runSchedule = async(assignDate = "empty") => {
 
   const selectEmails = returning.map(data => {
 
-    const transorter = nodemailer.createTransport({
-      service: 'gmail',
+    const smtpTransport = nodemailer.createTransport({
+      host: 'smtp-relay.sendinblue.com',
+      port: 587,
       auth: {
-        user: "wifispacenetworks@gmail.com",
-        pass: authenticate
+        user:process.env.SMTP_USER,
+        pass: process.env.SMTP_SECRET
       }
     })
   
-      const mailOption = {
-        from: 'Support Center',
+      // const mailOption = {
+      //   from: 'Support Center',
+      //   to: `${data.emailAddress}`,
+      //   subject: 'WifiSpace Service Notification',
+      //   text: `Hello, ${data.firstName}, We appreciate your continued patronage. Please note that your subcription is dued on ${data.accounts[0].dueDate}. Please do well to subscribe soon or your account will be deactivated.`
+      // }
+  
+
+      const sendingMail = smtpTransport.sendMail({
+        from: 'wifispacenetworks@gmail.com',
         to: `${data.emailAddress}`,
         subject: 'WifiSpace Service Notification',
-        text: `Hello, ${data.firstName}, We appreciate your continued patronage. Please note that your subcription is dued on ${data.accounts[0].dueDate}. Please do well to subscribe soon or your account will be deactivated.`
-      }
-  
-      transorter.sendMail(mailOption, async(error, info) => {
-        if(error){
-          console.log(error)
-        } else{
-          console.log(`Emaiil sent: ${info.response} to ${data.emailAddress}`)
-          
-        }
+        // text: `Hello, we are notifying you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`,
+        html:` <body><h2>Hello, ${data.firstName},</h2><p>We appreciate your continued patronage. Please note that your subcription is dued on ${data.accounts[0].dueDate}. Do well to subscribe soon or your account will be deactivated. .You can click <a href="http://wifispacenotifier.herokuapp.com">here</a> to chat with an agent via whatsapp.</p> <center><div><img src="https://smarttechs.com.ng/WSLogo.jpg?auto=format&fit=max&w=1920" alt="WIfispace"></div></center></body>`
       })
   
 
@@ -118,46 +119,49 @@ const runSchedule = async(assignDate = "empty") => {
   })
 
   console.log(selectEmails);
-
-  const transorter = nodemailer.createTransport({
-    service: 'gmail',
+  const smtpTransport = nodemailer.createTransport({
+    host: 'smtp-relay.sendinblue.com',
+    port: 587,
     auth: {
-      user: "wifispacenetworks@gmail.com",
-      pass: authenticate
+      user:process.env.SMTP_USER,
+      pass: process.env.SMTP_SECRET
     }
   })
 
-  if(selectEmails.lenght != 0){
-    const mailOption = {
-      from: 'Support Center',
-      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
-      subject: 'Daily Dued Notification For Wifispace Users.',
-      text: `Hi Team, we have just sent notification across to the following user(s) ${selectEmails}. If any of them is not suppose to recieve these email, please Click "https://smarttechs.com.ng" to marked them as paid.`
-    }
 
-    transorter.sendMail(mailOption, async(error, info) => {
-      if(error){
-        console.log(error)
-      } else{
-        console.log(`Emaiil sent: ${info.response} to ${selectEmails}`)
-      }
-    })
+  if(selectEmails.lenght != 0){
+    // const mailOption = {
+    //   from: 'Support Center',
+    //   to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
+    //   subject: 'Daily Dued Notification For Wifispace Users.',
+    //   text: `Hi Team, we have just sent notification across to the following user(s) ${selectEmails}. If any of them is not suppose to recieve these email, please Click "https://smarttechs.com.ng" to marked them as paid.`
+    // }
+
+   
+      const sendingMail = smtpTransport.sendMail({
+        from: 'wifispacenetworks@gmail.com',
+        to: "collinsrollins07@gmail.com, wifispacenetworks@gmail.com",
+        subject: 'Daily Dued Notification Report(s)',
+        // text: `Hello, we are notifying you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`,
+        html:` <body><h2>Hi Team,</h2><p> we have just sent notification across to the following user(s) ${selectEmails}.If any of them is not suppose to recieve these email, please Click <a href="http://wifispacenotifier.herokuapp.com">here</a> to marked them as paid. </p> <center><div><img src="https://smarttechs.com.ng/WSLogo.jpg?auto=format&fit=max&w=1920" alt="WIfispace"></div></center></body>`
+      })
+  
+
 
   } else{
-    const mailOption = {
-      from: 'Support Center',
-      to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
-      subject: 'Daily Dued Notification For Wifispace Users.',
-      text: `Hi Team, we have scenned the database for dued customers for today and we've found none. We shall run next scan tommorow...`
-    }
+    // const mailOption = {
+    //   from: 'Support Center',
+    //   to: `collinsrollins07@gmail.com, wifispacenetworks@gmail.com`,
+    //   subject: 'Daily Dued Notification For Wifispace Users.',
+    //   text: `Hi Team, we have scenned the database for dued customers for today and we've found none. We shall run next scan tommorow...`
+    // }
 
-    transorter.sendMail(mailOption, async(error, info) => {
-      if(error){
-        console.log(error)
-      } else{
-        console.log(`Emaiil sent: ${info.response} to ${selectEmails}`)
-        
-      }
+    const sendingMail = smtpTransport.sendMail({
+      from: 'wifispacenetworks@gmail.com',
+      to: "collinsrollins07@gmail.com, wifispacenetworks@gmail.com",
+      subject: 'Daily Dued Notification Report(s)',
+      // text: `Hello, we are notifying you that the backend server is now started. We shall run the daily scan in the next 12 hours from now. Thank you.`,
+      html:` <body><h2>Hi Team,</h2><p> we have scenned the database for dued customers for today and we've found none. We shall run next scan tommorow... </p> <center><div><img src="https://smarttechs.com.ng/WSLogo.jpg?auto=format&fit=max&w=1920" alt="WIfispace"></div></center></body>`
     })
   }
 
@@ -165,7 +169,7 @@ const runSchedule = async(assignDate = "empty") => {
 }
 
 setInterval(() => {
-  runSchedule()
+  runSchedule();
 },43200000 );
 
 app.get("/", async(req, res) => {
