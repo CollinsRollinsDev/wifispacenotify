@@ -28,34 +28,29 @@ const CustomerSchema = new Schema({
         },
         macAddress: {
           type: String,
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."]
+          required: [true, "Please provide a macAddress"],
+          unique: [true, "Sorry, this mac address is invalid."]
         },
         accountName: {
           type: String,
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."],
+          required: [true, "Please provide an account name."],
         },
         accountPackage: {
           type: String,
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."],
+          required: [true, "Please provide an account Package."],
         },
         hotspotAddress: {
           type: String,
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."],
+          // required: [true, "Please provide an email address."],
         },
         lastUsedIp: {
           type: String,
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."],
+          // required: [true, "Please provide an email address."],
         },
         dueDate: {
           type: String,
           default: 'Oct 4, 2021',
-          required: [true, "Please provide an email address."],
-          unique: [true, "Sorry, this email address already existed."],
+          required: [true, "Please provide due data."],
         }
        }
       ],
